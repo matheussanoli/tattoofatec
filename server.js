@@ -65,7 +65,8 @@ app.get("/users", function(req, res) {
 		}else{
 			callback();
 		}
-	});	
+	});
+	res.send(response);	
 });
 
 app.post("/users", function(req, res) {
