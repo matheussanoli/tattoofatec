@@ -106,8 +106,9 @@ app.post("/users", function(req, res) {
 app.get("/users", function(req, res) {
 	User.find({}, function(err, users){
 		var userMap = {};
+		var i = 0;
 		users.forEach(function(user){
-			userMap[user.id] = user;
+			userMap[++i] = user;
 		});
 		res.send(userMap);
 	});
