@@ -60,15 +60,15 @@ app.post("/users", function(req, res) {
 
   if (!(req.body.username && req.body.password)) {
     handleError(res, "Invalid user input", "Must provide a username and a password.", 400);
+  }else{
+  	db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
+    	if (err) {
+      		handleError(res, err.message, "Failed to create new user.");
+    	} else {
+      	res.status(201).json(doc.ops[0]);
+    	}
+  	});
   }
-
-  db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to create new user.");
-    } else {
-      res.status(201).json(doc.ops[0]);
-    }
-  });
 });
 
 /*  "/contacts/:id"
