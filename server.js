@@ -56,12 +56,12 @@ function handleError(res, reason, message, code) {
 
 app.get("/users", function(req, res) {
 	var cursor = db.collection(USERS_COLLECTION).find();
-	var response = "";
+	var response = [];
 
 	cursor.each(function(err, doc){
 		assert.equal(err, null);
 		if(doc != null){
-			response += doc + "";
+			response.concat(doc);
 		}else{
 			callback();
 		}
