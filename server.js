@@ -74,14 +74,19 @@ function handleError(res, reason, message, code) {
 // 	});
 // });
 
-var User = mongoose.model('User' {username: String, password: String, created_on: Date});
+var User = mongoose.model('User', {username: String, password: String, created_on: Date});
 
 app.post("/users", function(req, res) {
   if (!(req.body.username && req.body.password)) {
     handleError(res, "Invalid user input", "Must provide a username and a password.", 400);
   }else{
-  	var user = new User({username: req.body.username,
-  	 password: req.body.password, created_on: Date.now()});
+  	var user = new User(
+  		{
+  			username: req.body.username,
+  			password: req.body.password,
+  			created_on: Date.now()
+  		}
+  	);
   	user.save(function (err, user){
   		if(err){
   			console.log(err);
