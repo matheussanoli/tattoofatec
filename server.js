@@ -19,7 +19,6 @@ var db = mongoose.connection;
 
 db.on('connected', function(){
 	console.log('Mongoose default connection open');
-	// Initialize the app.
   	var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
@@ -88,8 +87,8 @@ app.post("/users", function(req, res) {
   	var user = new User(
   		{
   			username: req.body.username,
-  			password: req.body.password,
-  			created_on: Date.now()
+  			password: req.body.password
+  			// created_on: Date.now()
   		}
   	);
   	user.save(function (err, user){
