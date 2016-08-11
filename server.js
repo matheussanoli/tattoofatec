@@ -14,11 +14,16 @@ app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 
-mongoose.connect(dbURI);
+mongoose.connect(dbURI:process.env.port || );
 var db = mongoose.connection;
 
 db.on('connected', function(){
 	console.log('Mongoose default connection open');
+	// Initialize the app.
+  	var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+  });
 });
 db.on('error', function(err){
 	console.log('Mongoose default connection error: ' + err);
@@ -44,11 +49,11 @@ process.on('SIGINT', function(){
 //   db = database;
 //   console.log("Database connection ready");
 
-//   // Initialize the app.
-//   var server = app.listen(process.env.PORT || 8080, function () {
-//     var port = server.address().port;
-//     console.log("App now running on port", port);
-//   });
+  // Initialize the app.
+  // var server = app.listen(process.env.PORT || 8080, function () {
+  //   var port = server.address().port;
+  //   console.log("App now running on port", port);
+  // });
 // });
 
 // API ROUTES BELOW
