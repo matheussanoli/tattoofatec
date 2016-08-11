@@ -63,7 +63,7 @@ app.post("/users", function(req, res) {
   }else{
   	db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
     	if (err) {
-      		handleError(res, err.message, "Failed to create new user." + err);
+      		handleError(res, err.message, "Failed to create new user. | " + err);
     	} else {
       	res.status(201).json(doc.ops[0]);
     	}
