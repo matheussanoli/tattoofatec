@@ -44,14 +44,28 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
+// app.get("/users", function(req, res) {
+// 	db.collection(USERS_COLLECTION).findOne({'username':'thaisfaria'}, function(err, doc){
+// 		if(err){
+// 			handleError(res, err.message, "Failed to get this user.");
+// 		}else{
+// 			res.status(200).send(doc);
+// 		}
+// 	});
+// });
+
 app.get("/users", function(req, res) {
-	db.collection(USERS_COLLECTION).findOne({'username':'thaisfaria'}, function(err, doc){
-		if(err){
-			handleError(res, err.message, "Failed to get this user.");
+	var cursor = db.collection(USERS_COLLECTION).find();
+	var response = "";
+
+	cursor.each(function(err, doc){
+		assert.equal(err, null);
+		if(doc != null){
+			response += doc + "";
 		}else{
-			res.status(200).send(doc);
+			callback();
 		}
-	});
+	});	
 });
 
 app.post("/users", function(req, res) {
