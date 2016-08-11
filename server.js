@@ -45,7 +45,7 @@ function handleError(res, reason, message, code) {
  */
 
 app.get("/users", function(req, res) {
-	db.collection(USERS_COLLECTION).findOne({'username':req.username}, function(err, doc){
+	db.collection(USERS_COLLECTION).findOne({'username':'thaisfaria'}, function(err, doc){
 		if(err){
 			handleError(res, err.message, "Failed to get this user.");
 		}else{
