@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 
 mongoose.connect(dbURI);
-var db = mongoo.connection;
+var db = mongoose.connection;
 
 db.on('connected', function(){
 	console.log('Mongoose default connection open');
