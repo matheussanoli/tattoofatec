@@ -87,8 +87,8 @@ app.post("/users", function(req, res) {
   	var user = new User(
   		{
   			username: req.body.username,
-  			password: req.body.password
-  			// created_on: Date.now()
+  			password: req.body.password,
+  			created_on: Date.now()
   		}
   	);
   	user.save(function (err, user){
@@ -104,19 +104,29 @@ app.post("/users", function(req, res) {
 });
 
 app.get("/users", function(req, res) {
-	var cursor = db.collection(USERS_COLLECTION).find();
-	var response = [];
-
-	cursor.each(function(err, doc){
-		assert.equal(err, null);
-		if(doc != null){
-			response.concat(doc);
-		}else{
-			callback();
-		}
+	User.find({}, function(err, users){
+		var userMap = {};
+		users.forEach(function(user){
+			userMap[user.id] = user;
+		});
+		res.send(userMap);
 	});
-	res.send(response);	
 });
+
+// app.get("/users", function(req, res) {
+// 	var cursor = db.collection(USERS_COLLECTION).find();
+// 	var response = [];
+
+// 	cursor.each(function(err, doc){
+// 		assert.equal(err, null);
+// 		if(doc != null){
+// 			response.concat(doc);
+// 		}else{
+// 			callback();
+// 		}
+// 	});
+// 	res.send(response);	
+// });
 
 // app.post("/users", function(req, res) {
 //   var newUser = req.body;
