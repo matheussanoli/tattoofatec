@@ -20,9 +20,15 @@ var db = mongoose.connection;
 db.on('connected', function(){
 	console.log('Mongoose default connection open');
   	var server = app.listen(process.env.PORT || 8080, function () {
+<<<<<<< HEAD
     var port = server.address().port;
     console.log("App now running on port", port);
   });
+=======
+    	var port = server.address().port;
+    	console.log("App now running on port", port);
+  	});
+>>>>>>> 4de59a0379c4afbe878d69a1c16054e650f9abb3
 });
 db.on('error', function(err){
 	console.log('Mongoose default connection error: ' + err);
@@ -37,6 +43,7 @@ process.on('SIGINT', function(){
 	});
 });
 
+<<<<<<< HEAD
 // Connect to the database before starting the application server.
 // mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 //   if (err) {
@@ -57,12 +64,15 @@ process.on('SIGINT', function(){
 
 // API ROUTES BELOW
 
+=======
+>>>>>>> 4de59a0379c4afbe878d69a1c16054e650f9abb3
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);
   res.status(code || 500).json({"error": message});
 }
 
+<<<<<<< HEAD
 /*  "/contacts"
  *    GET: finds all contacts
  *    POST: creates a new contact
@@ -78,6 +88,8 @@ function handleError(res, reason, message, code) {
 // 	});
 // });
 
+=======
+>>>>>>> 4de59a0379c4afbe878d69a1c16054e650f9abb3
 var User = mongoose.model('User', {username: String, password: String, created_on: Date});
 
 app.post("/users", function(req, res) {
@@ -114,6 +126,7 @@ app.get("/users", function(req, res) {
 	});
 });
 
+<<<<<<< HEAD
 // app.get("/users", function(req, res) {
 // 	var cursor = db.collection(USERS_COLLECTION).find();
 // 	var response = [];
@@ -152,6 +165,8 @@ app.get("/users", function(req, res) {
  *    DELETE: deletes contact by id
  */
 
+=======
+>>>>>>> 4de59a0379c4afbe878d69a1c16054e650f9abb3
 app.get("/users/:id", function(req, res) {
 });
 
